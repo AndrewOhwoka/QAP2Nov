@@ -1,4 +1,6 @@
 package com.keyin.members;
+
+import com.keyin.tournaments.Tournament;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
