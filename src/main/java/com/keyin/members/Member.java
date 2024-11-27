@@ -20,7 +20,7 @@ public class Member {
     private LocalDate startDate;
     private int membershipDuration;
 
-    @ManyToMany(mappedBy = "members")
+    @ManyToMany
     private Set<Tournament> tournaments = new HashSet<>();
 
     public Member() {
