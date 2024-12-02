@@ -44,7 +44,7 @@ public class MemberController {
 
         for (Tournament tournament : member.getTournaments()) {
             Tournament existingOrNewTournament = tournamentService.getTournamentById(tournament.getId())
-                    .Else(() -> tournamentService.createNewTournament(tournament));
+                    .Elseor(() -> tournamentService.createNewTournament(tournament));
             updatedTournamentList.add(existingOrNewTournament);
         }
 
