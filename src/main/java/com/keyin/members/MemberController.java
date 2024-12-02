@@ -43,8 +43,8 @@ public class MemberController {
         List<Tournament> updatedTournamentList = new ArrayList<>();
 
         for (Tournament tournament : member.getTournaments()) {
-            Tournament existingOrNewTournament = tournamentService.findByTournamentName(tournament.getName())
-                    .orElseGet(() -> tournamentService.createNewTournament(tournament));
+            Tournament existingOrNewTournament = tournamentService.getTournamentById(tournament.getId())
+                    .Else(() -> tournamentService.createNewTournament(tournament));
             updatedTournamentList.add(existingOrNewTournament);
         }
 
