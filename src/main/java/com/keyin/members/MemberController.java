@@ -1,12 +1,10 @@
 package com.keyin.members;
-
 import com.keyin.tournaments.Tournament;
 import com.keyin.tournaments.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +42,7 @@ public class MemberController {
 
         for (Tournament tournament : member.getTournaments()) {
             Tournament existingOrNewTournament = tournamentService.getTournamentById(tournament.getId())
-                    .Elseor(() -> tournamentService.createNewTournament(tournament));
+                    .orElseGet(() -> tournamentService.createNewTournament(tournament));
             updatedTournamentList.add(existingOrNewTournament);
         }
 
