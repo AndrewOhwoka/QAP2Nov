@@ -1,6 +1,5 @@
 package com.keyin.tournaments;
 
-import com.keyin.members.Member;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -79,5 +78,4 @@ public class Tournament {
     public void setCashPrize(double cashPrize) {
         this.cashPrize = cashPrize;
     }
-
 }

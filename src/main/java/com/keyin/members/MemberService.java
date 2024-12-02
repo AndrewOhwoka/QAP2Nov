@@ -18,15 +18,12 @@ public class MemberService {
     public Iterable<Member> getAllMembers() {
         return memberRepository.findAll();
     }
-    public Optional<Member> searchByID(Long ID) {
 
-        return memberRepository.findById( ID );
+    public Optional<Member> searchByID(Long id) {
+        return memberRepository.findById(id);
     }
 
     public Member findByName(String name) {
         return memberRepository.findByName(name);
     }
-
-
-
 }
