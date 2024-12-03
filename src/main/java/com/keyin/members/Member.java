@@ -3,7 +3,9 @@ package com.keyin.members;
 import com.keyin.tournaments.Tournament;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,7 +23,7 @@ public class Member {
     private int membershipDuration;
 
     @ManyToMany
-    private Set<Tournament> tournaments = new HashSet<>();
+    private List<Tournament> tournaments = new ArrayList<>();
 
     public Member() {
     }
@@ -65,6 +67,14 @@ public class Member {
         return email;
     }
 
+    public List<Tournament> getTournaments() {
+        return tournaments;
+    }
+
+    public void setTournaments(List<Tournament> tournaments) {
+        this.tournaments = tournaments;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -93,11 +103,5 @@ public class Member {
         this.membershipDuration = membershipDuration;
     }
 
-    public Set<Tournament> getTournaments() {
-        return tournaments;
-    }
 
-    public void setTournaments(Set<Tournament> tournaments) {
-        this.tournaments = tournaments;
-    }
 }

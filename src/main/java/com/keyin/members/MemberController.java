@@ -37,18 +37,26 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<Member> createMember(@RequestBody Member member) {
+    public Member createMember(@RequestBody Member member) {
         List<Tournament> updatedTournamentList = new ArrayList<>();
 
         for (Tournament tournament : member.getTournaments()) {
-            Tournament existingOrNewTournament = tournamentService.getTournamentById(tournament.getId())
-                    .orElseGet(() -> tournamentService.createNewTournament(tournament));
-            updatedTournamentList.add(existingOrNewTournament);
-        }
+            Optional< Tournament> tournamentOptional = Optional.ofNullable(tournamentService.getTournamentById(tournament.getId()));
+            Tournament tournament1;
 
+            if (tournamentOptional.isPresent()) {
+                tournament = tournamentOptional.get();
+                updatedTournamentList.add(tournament);
+            } else {
+
+                updatedTournamentList = member.getTournaments();
+                tournamentService.createNewTournament(tournament);
+            }
+
+        }
         member.setTournaments(updatedTournamentList);
-        Member createdMember = memberService.createNewMember(member);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdMember);
+        return memberService.createNewMember(member);
+
     }
 
     @GetMapping("/{id}/tournaments")
